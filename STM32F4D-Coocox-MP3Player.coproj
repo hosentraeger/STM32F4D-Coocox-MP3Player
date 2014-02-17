@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Project version="2G - 1.7.6" name="STM32F4D-Coocox-MP3Player">
+  <Target name="STM32F4D-Coocox-MP3Player" isCurrent="1">
+    <Device manufacturerId="9" manufacturerName="ST" chipId="344" chipName="STM32F407VG" boardId="" boardName=""/>
+    <BuildOption>
+      <Compile>
+        <Option name="OptimizationLevel" value="0"/>
+        <Option name="UseFPU" value="0"/>
+        <Option name="UserEditCompiler" value=""/>
+        <Option name="SupportCPlusplus" value="0"/>
+        <Option name="FPU" value="2"/>
+        <Includepaths>
+          <Includepath path="."/>
+        </Includepaths>
+        <DefinedSymbols>
+          <Define name="STM32F407VG"/>
+          <Define name="STM32F4XX"/>
+          <Define name="USE_STDPERIPH_DRIVER"/>
+          <Define name="__ASSEMBLY__"/>
+          <Define name="__FPU_USED"/>
+          <Define name="USE_STM32F4DISCOVERY"/>
+        </DefinedSymbols>
+      </Compile>
+      <Link useDefault="0">
+        <Option name="DiscardUnusedSection" value="0"/>
+        <Option name="UserEditLinkder" value=""/>
+        <Option name="UseMemoryLayout" value="1"/>
+        <Option name="nostartfiles" value="1"/>
+        <Option name="LTO" value="0"/>
+        <Option name="IsNewStartupCode" value="1"/>
+        <Option name="Library" value="Semihosting"/>
+        <LinkedLibraries/>
+        <MemoryAreas debugInFlashNotRAM="1">
+          <Memory name="IROM1" type="ReadOnly" size="0x00100000" startValue="0x08000000"/>
+          <Memory name="IRAM1" type="ReadWrite" size="0x00020000" startValue="0x20000000"/>
+          <Memory name="IROM2" type="ReadOnly" size="" startValue=""/>
+          <Memory name="IRAM2" type="ReadWrite" size="0x00010000" startValue="0x10000000"/>
+        </MemoryAreas>
+        <LocateLinkFile path="../../../coocox/coide-1.7.6/configuration/programdata/stm32f4d-coocox-mp3player/arm-gcc-link.ld" type="0"/>
+      </Link>
+      <Output>
+        <Option name="OutputFileType" value="0"/>
+        <Option name="Path" value="./"/>
+        <Option name="Name" value="STM32F4D-Coocox-MP3Player"/>
+        <Option name="HEX" value="1"/>
+        <Option name="BIN" value="1"/>
+      </Output>
+      <User>
+        <UserRun name="Run#1" type="Before" checked="0" value=""/>
+        <UserRun name="Run#1" type="After" checked="0" value=""/>
+      </User>
+    </BuildOption>
+    <DebugOption>
+      <Option name="org.coocox.codebugger.gdbjtag.core.adapter" value="ST-Link"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.debugMode" value="SWD"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.clockDiv" value="1M"/>
+      <Option name="org.coocox.codebugger.gdbjtag.corerunToMain" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.jlinkgdbserver" value=""/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.userDefineGDBScript" value=""/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.targetEndianess" value="0"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.jlinkResetMode" value="Type 0: Normal"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.resetMode" value="SYSRESETREQ"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.ifSemihost" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.ifCacheRom" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.ipAddress" value="127.0.0.1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.portNumber" value="2009"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.autoDownload" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.verify" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.downloadFuction" value="Erase Effected"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.defaultAlgorithm" value="STM32F4xx_1024.elf"/>
+    </DebugOption>
+    <ExcludeFile/>
+  </Target>
+  <Components path="./">
+    <Component id="30" name="C Library" path="" type="2"/>
+    <Component id="31" name="Retarget printf" path="" type="2"/>
+    <Component id="33" name="Semihosting" path="" type="2"/>
+    <Component id="54" name="M4 CMSIS Core" path="" type="2"/>
+    <Component id="500" name="CMSIS BOOT" path="" type="2"/>
+    <Component id="501" name="RCC" path="" type="2"/>
+    <Component id="504" name="GPIO" path="" type="2"/>
+    <Component id="505" name="EXTI" path="" type="2"/>
+    <Component id="509" name="SPI" path="" type="2"/>
+    <Component id="510" name="I2C" path="" type="2"/>
+    <Component id="511" name="DMA" path="" type="2"/>
+    <Component id="515" name="DAC" path="" type="2"/>
+    <Component id="524" name="MISC" path="" type="2"/>
+    <Component id="526" name="SYSCFG" path="" type="2"/>
+    <Component id="573" name="STM32F4-Discovery" path="" type="2"/>
+    <Component id="713" name="FreeRTOS7.1.1_STM32F4xx" path="" type="2"/>
+  </Components>
+  <Files>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usb_dcd.h" path="Driver/cdc_device/usb_cdc_lolevel/usb_dcd.h" type="1"/>
+    <File name="Tasks/USBTask.c" path="Tasks/USBTask.c" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/tasks.c" path="FreeRTOSV7.1.1_STM32F4/Source/tasks.c" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_dac.h" path="cmsis_lib/include/stm32f4xx_dac.h" type="1"/>
+    <File name="cmsis_boot/stm32f4xx.h" path="cmsis_boot/stm32f4xx.h" type="1"/>
+    <File name="cmsis/core_cm4_simd.h" path="cmsis/core_cm4_simd.h" type="1"/>
+    <File name="Tasks" path="" type="2"/>
+    <File name="cmsis_lib/source/stm32f4xx_spi.c" path="cmsis_lib/source/stm32f4xx_spi.c" type="1"/>
+    <File name="cmsis/core_cmFunc.h" path="cmsis/core_cmFunc.h" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_cdc_vcp.h" path="Driver/cdc_device/usb_cdc_lolevel/usbd_cdc_vcp.h" type="1"/>
+    <File name="Driver" path="" type="2"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_usr.c" path="Driver/cdc_device/usb_cdc_lolevel/usbd_usr.c" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/timers.c" path="FreeRTOSV7.1.1_STM32F4/Source/timers.c" type="1"/>
+    <File name="main.h" path="main.h" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usb_conf.h" path="Driver/cdc_device/usb_cdc_lolevel/usb_conf.h" type="1"/>
+    <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usb_dcd.c" path="Driver/cdc_device/usb_cdc_lolevel/usb_dcd.c" type="1"/>
+    <File name="cmsis_lib/source/stm32f4xx_dac.c" path="cmsis_lib/source/stm32f4xx_dac.c" type="1"/>
+    <File name="Driver/ff" path="" type="2"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/readme.txt" path="FreeRTOSV7.1.1_STM32F4/Source/readme.txt" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_conf.h" path="Driver/cdc_device/usb_cdc_lolevel/usbd_conf.h" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_req.c" path="Driver/cdc_device/usb_cdc_lolevel/usbd_req.c" type="1"/>
+    <File name="stdio/printf.c" path="stdio/printf.c" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_rcc.h" path="cmsis_lib/include/stm32f4xx_rcc.h" type="1"/>
+    <File name="Driver/ff/option/unicode.c" path="Driver/ff/option/unicode.c" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/include/StackMacros.h" path="FreeRTOSV7.1.1_STM32F4/Source/include/StackMacros.h" type="1"/>
+    <File name="cmsis_lib/source/stm32f4xx_syscfg.c" path="cmsis_lib/source/stm32f4xx_syscfg.c" type="1"/>
+    <File name="stdio" path="" type="2"/>
+    <File name="cmsis_boot/startup/startup_stm32f4xx.c" path="cmsis_boot/startup/startup_stm32f4xx.c" type="1"/>
+    <File name="cmsis_lib/source/stm32f4xx_rcc.c" path="cmsis_lib/source/stm32f4xx_rcc.c" type="1"/>
+    <File name="cmsis/core_cmInstr.h" path="cmsis/core_cmInstr.h" type="1"/>
+    <File name="STM32F4-Discovery/stm32f4_discovery_audio_codec.c" path="STM32F4-Discovery/stm32f4_discovery_audio_codec.c" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_req.h" path="Driver/cdc_device/usb_cdc_lolevel/usbd_req.h" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/heap_2.c" path="FreeRTOSV7.1.1_STM32F4/Source/heap_2.c" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_cdc_core.h" path="Driver/cdc_device/usb_cdc_lolevel/usbd_cdc_core.h" type="1"/>
+    <File name="cmsis_boot/system_stm32f4xx.c" path="cmsis_boot/system_stm32f4xx.c" type="1"/>
+    <File name="Tasks/AudioTask.c" path="Tasks/AudioTask.c" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_spi.h" path="cmsis_lib/include/stm32f4xx_spi.h" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/list.c" path="FreeRTOSV7.1.1_STM32F4/Source/list.c" type="1"/>
+    <File name="cmsis" path="" type="2"/>
+    <File name="STM32F4-Discovery/stm32f4_discovery_audio_codec.h" path="STM32F4-Discovery/stm32f4_discovery_audio_codec.h" type="1"/>
+    <File name="cmsis_lib" path="" type="2"/>
+    <File name="Driver/ff/integer.h" path="Driver/ff/integer.h" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_cdc_core.c" path="Driver/cdc_device/usb_cdc_lolevel/usbd_cdc_core.c" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/include/croutine.h" path="FreeRTOSV7.1.1_STM32F4/Source/include/croutine.h" type="1"/>
+    <File name="cmsis_lib/include/misc.h" path="cmsis_lib/include/misc.h" type="1"/>
+    <File name="STM32F4-Discovery" path="" type="2"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel" path="" type="2"/>
+    <File name="Driver/cdc_device" path="" type="2"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/croutine.c" path="FreeRTOSV7.1.1_STM32F4/Source/croutine.c" type="1"/>
+    <File name="main.c" path="main.c" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_ioreq.h" path="Driver/cdc_device/usb_cdc_lolevel/usbd_ioreq.h" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/include/mpu_wrappers.h" path="FreeRTOSV7.1.1_STM32F4/Source/include/mpu_wrappers.h" type="1"/>
+    <File name="cmsis_lib/source/stm32f4xx_gpio.c" path="cmsis_lib/source/stm32f4xx_gpio.c" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_i2c.h" path="cmsis_lib/include/stm32f4xx_i2c.h" type="1"/>
+    <File name="cmsis_lib/source/stm32f4xx_dma.c" path="cmsis_lib/source/stm32f4xx_dma.c" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/port.c" path="FreeRTOSV7.1.1_STM32F4/Source/port.c" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/include/portmacro.h" path="FreeRTOSV7.1.1_STM32F4/Source/include/portmacro.h" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/include/FreeRTOS.h" path="FreeRTOSV7.1.1_STM32F4/Source/include/FreeRTOS.h" type="1"/>
+    <File name="cmsis_boot" path="" type="2"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usb_bsp.h" path="Driver/cdc_device/usb_cdc_lolevel/usb_bsp.h" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_syscfg.h" path="cmsis_lib/include/stm32f4xx_syscfg.h" type="1"/>
+    <File name="semihosting/sh_cmd.s" path="semihosting/sh_cmd.s" type="1"/>
+    <File name="STM32F4-Discovery/stm32f4_discovery.h" path="STM32F4-Discovery/stm32f4_discovery.h" type="1"/>
+    <File name="cmsis_boot/startup" path="" type="2"/>
+    <File name="cmsis/core_cm4.h" path="cmsis/core_cm4.h" type="1"/>
+    <File name="semihosting/semihosting.c" path="semihosting/semihosting.c" type="1"/>
+    <File name="Tasks/AudioTask.h" path="Tasks/AudioTask.h" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/queue.c" path="FreeRTOSV7.1.1_STM32F4/Source/queue.c" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/include/portable.h" path="FreeRTOSV7.1.1_STM32F4/Source/include/portable.h" type="1"/>
+    <File name="cmsis_lib/source/misc.c" path="cmsis_lib/source/misc.c" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usb_bsp.c" path="Driver/cdc_device/usb_cdc_lolevel/usb_bsp.c" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/include/semphr.h" path="FreeRTOSV7.1.1_STM32F4/Source/include/semphr.h" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_desc.c" path="Driver/cdc_device/usb_cdc_lolevel/usbd_desc.c" type="1"/>
+    <File name="Driver/ff/ffconf.h" path="Driver/ff/ffconf.h" type="1"/>
+    <File name="Driver/ff/ff_rtc_if.h" path="Driver/ff/ff_rtc_if.h" type="1"/>
+    <File name="cmsis_lib/source/stm32f4xx_i2c.c" path="cmsis_lib/source/stm32f4xx_i2c.c" type="1"/>
+    <File name="cmsis_lib/source" path="" type="2"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_core.c" path="Driver/cdc_device/usb_cdc_lolevel/usbd_core.c" type="1"/>
+    <File name="Driver/ff/option" path="" type="2"/>
+    <File name="Driver/ff/mmc_stm32f4.h" path="Driver/ff/mmc_stm32f4.h" type="1"/>
+    <File name="cmsis_boot/stm32f4xx_conf.h" path="cmsis_boot/stm32f4xx_conf.h" type="1"/>
+    <File name="cmsis_boot/system_stm32f4xx.h" path="cmsis_boot/system_stm32f4xx.h" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source" path="" type="2"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_usr.h" path="Driver/cdc_device/usb_cdc_lolevel/usbd_usr.h" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_ioreq.c" path="Driver/cdc_device/usb_cdc_lolevel/usbd_ioreq.c" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/include/task.h" path="FreeRTOSV7.1.1_STM32F4/Source/include/task.h" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/include/list.h" path="FreeRTOSV7.1.1_STM32F4/Source/include/list.h" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/include/FreeRTOSConfig.h" path="FreeRTOSV7.1.1_STM32F4/Source/include/FreeRTOSConfig.h" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_core.h" path="Driver/cdc_device/usb_cdc_lolevel/usbd_core.h" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_def.h" path="Driver/cdc_device/usb_cdc_lolevel/usbd_def.h" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usb_regs.h" path="Driver/cdc_device/usb_cdc_lolevel/usb_regs.h" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/include/timers.h" path="FreeRTOSV7.1.1_STM32F4/Source/include/timers.h" type="1"/>
+    <File name="Driver/ff/ff_rtc_if.c" path="Driver/ff/ff_rtc_if.c" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_desc.h" path="Driver/cdc_device/usb_cdc_lolevel/usbd_desc.h" type="1"/>
+    <File name="semihosting" path="" type="2"/>
+    <File name="Driver/cdc_device/stm32_ub_usb_cdc.h" path="Driver/cdc_device/stm32_ub_usb_cdc.h" type="1"/>
+    <File name="Driver/ff/option/syscall.c" path="Driver/ff/option/syscall.c" type="1"/>
+    <File name="Driver/ff/ff.c" path="Driver/ff/ff.c" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/include/projdefs.h" path="FreeRTOSV7.1.1_STM32F4/Source/include/projdefs.h" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4" path="" type="2"/>
+    <File name="cmsis_lib/include/stm32f4xx_exti.h" path="cmsis_lib/include/stm32f4xx_exti.h" type="1"/>
+    <File name="cmsis_lib/source/stm32f4xx_exti.c" path="cmsis_lib/source/stm32f4xx_exti.c" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usb_core.c" path="Driver/cdc_device/usb_cdc_lolevel/usb_core.c" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usb_dcd_int.h" path="Driver/cdc_device/usb_cdc_lolevel/usb_dcd_int.h" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/include" path="" type="2"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usb_defines.h" path="Driver/cdc_device/usb_cdc_lolevel/usb_defines.h" type="1"/>
+    <File name="FreeRTOSV7.1.1_STM32F4/Source/include/queue.h" path="FreeRTOSV7.1.1_STM32F4/Source/include/queue.h" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_dma.h" path="cmsis_lib/include/stm32f4xx_dma.h" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_gpio.h" path="cmsis_lib/include/stm32f4xx_gpio.h" type="1"/>
+    <File name="Driver/ff/mmc_stm32f4.c" path="Driver/ff/mmc_stm32f4.c" type="1"/>
+    <File name="syscalls" path="" type="2"/>
+    <File name="Driver/ff/diskio.h" path="Driver/ff/diskio.h" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usbd_cdc_vcp.c" path="Driver/cdc_device/usb_cdc_lolevel/usbd_cdc_vcp.c" type="1"/>
+    <File name="Tasks/USBTask.h" path="Tasks/USBTask.h" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usb_dcd_int.c" path="Driver/cdc_device/usb_cdc_lolevel/usb_dcd_int.c" type="1"/>
+    <File name="cmsis_lib/include" path="" type="2"/>
+    <File name="semihosting/semihosting.h" path="semihosting/semihosting.h" type="1"/>
+    <File name="Driver/ff/ff.h" path="Driver/ff/ff.h" type="1"/>
+    <File name="Driver/cdc_device/stm32_ub_usb_cdc.c" path="Driver/cdc_device/stm32_ub_usb_cdc.c" type="1"/>
+    <File name="Driver/cdc_device/usb_cdc_lolevel/usb_core.h" path="Driver/cdc_device/usb_cdc_lolevel/usb_core.h" type="1"/>
+    <File name="STM32F4-Discovery/stm32f4_discovery.c" path="STM32F4-Discovery/stm32f4_discovery.c" type="1"/>
+  </Files>
+</Project>
