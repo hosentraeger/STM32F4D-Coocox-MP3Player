@@ -86,9 +86,13 @@ uint32_t Codec_TIMEOUT_UserCallback ( void )
 	return ( 0 );
 };
 
+/**
+ * @brief fills the work buffer with audio samples provided by a wave file
+ */
 uint8_t AudioProvideSamplesFromWaveFile ( )
 {
 	FRESULT res;
+	audioContext.lastFrame = 0;
 
 	// read data into buffer
 	res = f_read (
@@ -99,20 +103,55 @@ uint8_t AudioProvideSamplesFromWaveFile ( )
 
 	if ( res )
 	{
-		f_close ( &audioContext.fil );
+		audioContext.lastFrame = 1;
 		audioContext.fileIsOpen = 0;
+		f_close ( &audioContext.fil );
 		return ( 3 );
 	};
 
 	if ( 0 == audioContext.sampleBufferSize )
 	{
+		audioContext.lastFrame = 1;
 		audioContext.fileIsOpen = 0;
 		f_close ( &audioContext.fil );
 		return ( 4 );
 	};
 
+	if ( audioContext.sampleBufferSize < sizeof ( audioContext.sampleBuffer ) )
+	{
+		audioContext.lastFrame = 1;
+		audioContext.fileIsOpen = 0;
+		f_close ( &audioContext.fil );
+	};
+
 	return ( 0 );
 };
+
+/**
+ * @brief fills the work buffer with audio samples provided by a wave file
+ */
+uint8_t AudioProvideSamplesFromFile ( )
+{
+	uint8_t rc = 0;
+
+	switch ( audioContext.format )
+	{
+	case FILEFORMAT_WAVE:
+		rc = AudioProvideSamplesFromWaveFile ( );
+		break;
+
+	default:
+		audioContext.fileIsOpen = 0;
+		f_close ( &audioContext.fil );
+		rc = 3;
+		break;
+	};
+	return ( rc );
+};
+
+/**
+ * @brief initiates the playback of an audio file
+ */
 
 uint8_t AudioStartPlayFile ( char * sFilename )
 {
@@ -143,18 +182,9 @@ uint8_t AudioStartPlayFile ( char * sFilename )
 	if ( res ) return ( 2 );
 	audioContext.fileIsOpen = 1;
 
-	switch ( audioContext.format )
-	{
-	case FILEFORMAT_WAVE:
-		rc = AudioProvideSamplesFromWaveFile ( );
-		break;
+	rc = AudioProvideSamplesFromFile ( );
 
-	default:
-		audioContext.fileIsOpen = 0;
-		f_close ( &audioContext.fil );
-		return ( 3 );
-		break;
-	};
+	if ( 0 == rc ) EVAL_AUDIO_Play ( audioContext.dmaBuffer, audioContext.sampleBufferSize );
 
 	return ( rc );
 };
@@ -164,6 +194,7 @@ void AudioTask ( void * pvParameters )
 	struct AAudioCommandMessage CmdMsg;
 	uint8_t rc = 0;
 	FRESULT res;
+	uint8_t pausing = 0;
 
 	xAudioQueue = xQueueCreate ( 8, sizeof ( char ) );
 
@@ -183,17 +214,36 @@ void AudioTask ( void * pvParameters )
 			case 'h': // half transfer complete
 				break;
 			case 't': // transfer complete
+				if ( audioContext.lastFrame )
+				{
+					EVAL_AUDIO_Stop ( CODEC_PDWN_SW );
+				}
+				else
+				{
+					AudioProvideSamplesFromFile ( );
+				}
 				break;
 			case 'p': // play file
 				rc = AudioStartPlayFile ( CmdMsg.sFilename );
 				switch ( rc )
 				{
-					case 0: EVAL_AUDIO_Play ( audioContext.dmaBuffer, audioContext.sampleBufferSize ); break;
-					case 1: led_state[1] = LED_STATE_BLINK_FAST; break;
-					case 2: led_state[2] = LED_STATE_BLINK_FAST; break;
+					case 0:
+						led_state[1] = LED_STATE_OFF;
+						led_state[2] = LED_STATE_OFF;
+						break;
+
+					case 1:
+						led_state[1] = LED_STATE_BLINK_FAST;
+						break;
+
+					case 2:
+						led_state[2] = LED_STATE_BLINK_FAST;
+						break;
 				}
 				break;
 			case 'r': // pause/resume
+				EVAL_AUDIO_PauseResume ( pausing ? AUDIO_RESUME : AUDIO_PAUSE );
+				pausing ^= pausing;
 				break;
 			case 's': // stop playback
 				EVAL_AUDIO_Stop ( CODEC_PDWN_SW );
